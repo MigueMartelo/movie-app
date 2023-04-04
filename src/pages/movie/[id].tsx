@@ -1,6 +1,7 @@
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
 
 import { getMovie, getMovieCredits } from '@/services';
@@ -26,12 +27,12 @@ const MoviePage: NextPage = () => {
             <MovieView movie={movie} movieCredits={movieCredits?.cast} />
           )}
         </div>
-        <button
+        <Link
+          href={'/'}
           className='bg-blue-500 rounded-lg px-4 py-2 text-white font-bold mb-4'
-          onClick={() => router.push('/')}
         >
           Go Back
-        </button>
+        </Link>
       </main>
     </>
   );
