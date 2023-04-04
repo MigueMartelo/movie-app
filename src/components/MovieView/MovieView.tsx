@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import config from '@/config';
 import { ICast, IGenre } from '@/interfaces';
+import { StarRating } from '@/components';
 
 const { IMAGE_URL } = config;
 
 interface IMovieViewProps {
   movie: {
+    id: number;
     title: string;
     release_date: string;
     poster_path: string;
@@ -17,7 +19,6 @@ interface IMovieViewProps {
 }
 
 export const MovieView = ({ movie, movieCredits }: IMovieViewProps) => {
-  console.log(movie, movieCredits);
   return (
     <>
       <div className='flex justify-between font-bold mb-2'>
@@ -58,6 +59,9 @@ export const MovieView = ({ movie, movieCredits }: IMovieViewProps) => {
               ))}
             </div>
           )}
+          <div>
+            <StarRating movieId={movie.id} />
+          </div>
         </div>
       </div>
     </>

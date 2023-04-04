@@ -4,8 +4,7 @@ import { useMovies } from '@/hooks';
 import { MovieList } from '@/components';
 
 export default function Home() {
-  const { data, isLoading, isError } = useMovies();
-  console.log(isLoading, isError);
+  const { data } = useMovies();
 
   return (
     <>

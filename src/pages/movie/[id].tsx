@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { useMovie, useMovieCredits } from '@/hooks';
-import { MovieView } from '@/components/MovieView/MovieView';
+import { MovieView } from '@/components/';
 
 const MoviePage = () => {
   const router = useRouter();
