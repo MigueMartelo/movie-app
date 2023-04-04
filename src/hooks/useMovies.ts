@@ -10,6 +10,14 @@ export const useMovieCredits = (id: number) =>
   useQuery(['credits', id], () => getMovieCredits(id));
 
 export const useRateMovie = () =>
-  useMutation(({ movieId, rating }: { movieId: number; rating: number }) =>
-    rateMovie(movieId, rating)
+  useMutation(
+    ({
+      movieId,
+      rating,
+      guestSessionId,
+    }: {
+      movieId: number;
+      rating: number;
+      guestSessionId: string;
+    }) => rateMovie(movieId, rating, guestSessionId)
   );

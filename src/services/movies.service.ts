@@ -22,9 +22,13 @@ export const getMovieCredits = async (id: number) => {
   return data;
 };
 
-export const rateMovie = async (movieId: number, rating: number) => {
+export const rateMovie = async (
+  movieId: number,
+  rating: number,
+  guestSessionId: string
+) => {
   const response = await fetch(
-    `${BASE_URL}/${movieId}/rating?api_key=${API_KEY}`,
+    `${BASE_URL}/${movieId}/rating?api_key=${API_KEY}&guest_session_id=${guestSessionId}`,
     {
       method: 'POST',
       headers: {

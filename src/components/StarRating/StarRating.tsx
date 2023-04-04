@@ -1,4 +1,4 @@
-import { useRateMovie } from '@/hooks';
+import { useGuestSession, useRateMovie } from '@/hooks';
 import { useState } from 'react';
 
 interface IStarRatingProps {
@@ -9,12 +9,14 @@ export const StarRating = ({ movieId }: IStarRatingProps) => {
   const [rating, setRating] = useState(0);
   const [hover, setHover] = useState(0);
 
+  const { data } = useGuestSession();
   const { mutate: rateMovie } = useRateMovie();
+  const guestSessionId = data?.guest_session_id as string;
 
   const handleClick = (idx: number) => {
     setRating(idx);
     rateMovie(
-      { movieId, rating: idx },
+      { movieId, rating: idx, guestSessionId },
       { onSuccess: () => alert('Your are rated this movie!') }
     );
   };
