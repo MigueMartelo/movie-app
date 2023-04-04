@@ -11,12 +11,9 @@ export default function Home() {
     <>
       <Head>
         <title>Movie Inc</title>
-        <meta name='description' content='Show the best movies right now!' />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className='max-w-5xl mx-auto'>
-        <h1 className='text-3xl font-bold text-center'>Movie Inc</h1>
+        <h1 className='text-4xl font-bold text-center'>Movie Inc</h1>
         <MovieList movies={data?.results || []} />
       </main>
     </>

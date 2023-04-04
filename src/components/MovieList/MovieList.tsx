@@ -1,13 +1,14 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import { sortMoviesByTitle } from '@/helpers';
 import { Movie } from '@/interfaces';
-import Image from 'next/image';
-import { title } from 'process';
+import config from '@/config';
 
 interface MovieListProps {
   movies: Movie[];
 }
 
-const imageURL = 'https://image.tmdb.org/t/p/w500';
+const { IMAGE_URL } = config;
 
 export const MovieList = ({ movies }: MovieListProps) => {
   const moviesOrderedAlphabetically = sortMoviesByTitle(movies);
@@ -21,20 +22,22 @@ export const MovieList = ({ movies }: MovieListProps) => {
             <span>- {movie.release_date}</span>
           </div>
           <div className='h64 w-80 relative'>
-            <Image
-              className='rounded mb-2'
-              src={`${imageURL}${movie.poster_path}`}
-              width={320}
-              height={400}
-              alt={movie.title}
-            />
+            <Link href={`/movie/${movie.id}`}>
+              <Image
+                className='rounded mb-2'
+                src={`${IMAGE_URL}${movie.poster_path}`}
+                width={320}
+                height={400}
+                alt={movie.title}
+              />
+            </Link>
           </div>
           <div className='flex justify-between'>
             <div>
               Rating:{' '}
               <span className='font-bold'>{movie.vote_average} / 10</span>
             </div>
-            <div>Read More...</div>
+            <Link href={`/movie/${movie.id}`}>Read More...</Link>
           </div>
         </div>
       ))}
