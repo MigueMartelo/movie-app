@@ -2,7 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First you need to run `yarn install` or `yarn` to install all the dependencies.
+
+You need to set the env variable `NEXT_PUBLIC_API_KEY` in you `.env.local` file, you can copy and paste the `.env.example` file.
+
+If you don't have `API_KEY` you can create one in the [TheMovieDB](https://www.themoviedb.org/settings/api) webpage
+
+Then, run the development server:
 
 ```bash
 npm run dev
