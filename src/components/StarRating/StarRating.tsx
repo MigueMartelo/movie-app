@@ -22,7 +22,7 @@ export const StarRating = ({ movieId }: IStarRatingProps) => {
   };
 
   return (
-    <div className='star-rating'>
+    <section className='star-rating'>
       <span className='font-bold'>Vote: </span>
       {[...Array(10)].map((star, index) => {
         index += 1;
@@ -44,6 +44,6 @@ export const StarRating = ({ movieId }: IStarRatingProps) => {
           </button>
         );
       })}
-    </div>
+    </section>
   );
 };

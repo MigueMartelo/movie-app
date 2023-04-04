@@ -20,21 +20,25 @@ interface IMovieViewProps {
 
 export const MovieView = ({ movie, movieCredits }: IMovieViewProps) => {
   return (
-    <>
-      <div className='flex justify-between font-bold mb-2'>
+    <section>
+      <header className='flex justify-between font-bold mb-2'>
         <h2 className='text-2xl'>{movie.title}</h2>
         <span>Release: {movie.release_date}</span>
-      </div>
-      <div className='flex gap-4'>
-        <Image
-          src={`${IMAGE_URL}${movie.poster_path}`}
-          alt={movie.title}
-          width={500}
-          height={500}
-        />
+      </header>
+      <article className='flex gap-4'>
+        <figure className='w-full'>
+          <Image
+            src={`${IMAGE_URL}${movie.poster_path}`}
+            alt={movie.title}
+            width={500}
+            height={500}
+          />
+        </figure>
         <div>
-          <p className='font-bold'>Overview:</p>
-          <p>{movie.overview}</p>
+          <summary>
+            <p className='font-bold'>Overview:</p>
+            <p>{movie.overview}</p>
+          </summary>
           <div className='flex'>
             <span className='font-bold'>Genres:</span>
             {movie.genres.map((gen: IGenre) => (
@@ -63,7 +67,7 @@ export const MovieView = ({ movie, movieCredits }: IMovieViewProps) => {
             <StarRating movieId={movie.id} />
           </div>
         </div>
-      </div>
-    </>
+      </article>
+    </section>
   );
 };
