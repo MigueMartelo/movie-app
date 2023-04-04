@@ -1,17 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
 import Head from 'next/head';
 
-const fetchData = async () => {
-  const res = await fetch(
-    'https://api.themoviedb.org/3/movie/now_playing?api_key=3f3e1a61d79e02f212ef84afe3357aef&page=1'
-  );
-  const json = await res.json();
-  return json;
-};
+import { useMovies } from '@/hooks';
+import { MovieList } from '@/components';
 
 export default function Home() {
-  const { data, isLoading, isError } = useQuery(['movies'], fetchData);
-  console.log(data, isLoading, isError);
+  const {
+    data: { results: movies },
+    isLoading,
+    isError,
+  } = useMovies();
+  console.log(movies, isLoading, isError);
+
   return (
     <>
       <Head>
@@ -22,6 +21,7 @@ export default function Home() {
       </Head>
       <main className='max-w-5xl mx-auto'>
         <h1 className='text-3xl font-bold text-center'>Movie App</h1>
+        <MovieList movies={movies} />
       </main>
     </>
   );
