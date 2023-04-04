@@ -1,4 +1,5 @@
 import config from '@/config';
+import { sortMoviesByTitle } from '@/helpers';
 
 const { BASE_URL, API_KEY } = config;
 
@@ -7,7 +8,8 @@ export const getMovies = async () => {
     `${BASE_URL}/now_playing?page=1&api_key=${API_KEY}`
   );
   const data = await response.json();
-  return data;
+  const movies = sortMoviesByTitle(data.results);
+  return movies;
 };
 
 export const getMovie = async (id: number) => {
