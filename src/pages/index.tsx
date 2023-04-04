@@ -4,12 +4,8 @@ import { useMovies } from '@/hooks';
 import { MovieList } from '@/components';
 
 export default function Home() {
-  const {
-    data: { results: movies },
-    isLoading,
-    isError,
-  } = useMovies();
-  console.log(movies, isLoading, isError);
+  const { data, isLoading, isError } = useMovies();
+  console.log(isLoading, isError);
 
   return (
     <>
@@ -21,7 +17,7 @@ export default function Home() {
       </Head>
       <main className='max-w-5xl mx-auto'>
         <h1 className='text-3xl font-bold text-center'>Movie App</h1>
-        <MovieList movies={movies} />
+        <MovieList movies={data?.results || []} />
       </main>
     </>
   );
