@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 First you need to run `yarn install` or `yarn` to install all the dependencies.
 
-You need to set the env variable `NEXT_PUBLIC_API_KEY` in you `.env.local` file, you can copy and paste the `.env.example` file.
+You need to set the env variable `NEXT_PUBLIC_API_KEY` in your `.env.local` file, you can copy and paste the `.env.example` file.
 
 If you don't have `API_KEY` you can create one in the [TheMovieDB](https://www.themoviedb.org/settings/api) webpage
 
