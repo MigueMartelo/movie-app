@@ -1,9 +1,13 @@
-import { useRouter } from 'next/router';
+import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
+
+import { getMovie, getMovieCredits } from '@/services';
 import { useMovie, useMovieCredits } from '@/hooks';
 import { MovieView } from '@/components/';
 
-const MoviePage = () => {
+const MoviePage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -33,3 +37,26 @@ const MoviePage = () => {
   );
 };
 export default MoviePage;
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const id = ctx.params?.id;
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery(['movie', id], () => getMovie(Number(id)));
+  await queryClient.prefetchQuery(['movieCredits', id], () =>
+    getMovieCredits(Number(id))
+  );
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
+
+export const getStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+};

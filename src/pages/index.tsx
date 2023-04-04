@@ -1,10 +1,10 @@
-import { NextPage } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
 
+import { getMovies } from '@/services';
 import { useMovies } from '@/hooks';
 import { MovieList } from '@/components';
-import { getMovies } from '@/services';
 
 const Home: NextPage = () => {
   const { data } = useMovies();
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 
 export default Home;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(['movies'], getMovies);
 
@@ -34,4 +34,4 @@ export async function getStaticProps() {
     },
     revalidate: 60 * 60 * 24, // 24 hours because the data is static and doesn't change often
   };
-}
+};
