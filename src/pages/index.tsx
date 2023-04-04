@@ -1,10 +1,17 @@
+import { useQuery } from '@tanstack/react-query';
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const fetchData = async () => {
+  const res = await fetch(
+    'https://api.themoviedb.org/3/movie/now_playing?api_key=3f3e1a61d79e02f212ef84afe3357aef&page=1'
+  );
+  const json = await res.json();
+  return json;
+};
 
 export default function Home() {
+  const { data, isLoading, isError } = useQuery(['movies'], fetchData);
+  console.log(data, isLoading, isError);
   return (
     <>
       <Head>
@@ -13,8 +20,8 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>
-        <h1 className='text-3xl font-bold'>Movie App</h1>
+      <main className='max-w-5xl mx-auto'>
+        <h1 className='text-3xl font-bold text-center'>Movie App</h1>
       </main>
     </>
   );
