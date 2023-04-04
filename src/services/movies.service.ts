@@ -21,3 +21,20 @@ export const getMovieCredits = async (id: number) => {
   const data = await response.json();
   return data;
 };
+
+export const rateMovie = async (movieId: number, rating: number) => {
+  const response = await fetch(
+    `${BASE_URL}/${movieId}/rating?api_key=${API_KEY}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({
+        value: rating,
+      }),
+    }
+  );
+  const data = await response.json();
+  return data;
+};
