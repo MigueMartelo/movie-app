@@ -1,9 +1,12 @@
+import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 
+import { getMovies } from '@/services';
 import { useMovies } from '@/hooks';
 import { MovieList } from '@/components';
 
-export default function Home() {
+const Home: NextPage = () => {
   const { data } = useMovies();
 
   return (
@@ -13,8 +16,22 @@ export default function Home() {
       </Head>
       <main className='max-w-5xl mx-auto'>
         <h1 className='text-4xl font-bold text-center'>Movie Inc</h1>
-        <MovieList movies={data?.results || []} />
+        <MovieList movies={data || []} />
       </main>
     </>
   );
-}
+};
+
+export default Home;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['movies'], getMovies);
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+    revalidate: 60 * 60 * 24, // 24 hours because the data is static and doesn't change often
+  };
+};
