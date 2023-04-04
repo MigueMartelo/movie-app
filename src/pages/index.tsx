@@ -1,10 +1,12 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+import { useMovies } from '@/hooks';
+import { MovieList } from '@/components';
 
 export default function Home() {
+  const { data, isLoading, isError } = useMovies();
+  console.log(isLoading, isError);
+
   return (
     <>
       <Head>
@@ -13,8 +15,9 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>
-        <h1 className='text-3xl font-bold'>Movie App</h1>
+      <main className='max-w-5xl mx-auto'>
+        <h1 className='text-3xl font-bold text-center'>Movie App</h1>
+        <MovieList movies={data?.results || []} />
       </main>
     </>
   );
