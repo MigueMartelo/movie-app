@@ -12,28 +12,47 @@ const MoviePage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data: movie } = useMovie(Number(id));
+  const { data: movie, isLoading, isError } = useMovie(Number(id));
   const { data: movieCredits } = useMovieCredits(Number(id));
+
+  if (isLoading) {
+    return <div className='text-2xl font-bold text-blue-400'>Loading...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className='text-2xl font-bold text-red-400'>
+        Ops! Something Wrong!!!
+      </div>
+    );
+  }
 
   return (
     <>
       <Head>
         <title>Movie Inc</title>
       </Head>
-      <main className='max-w-5xl mx-auto'>
-        <h1 className='text-3xl font-bold text-center'>Movie Inc</h1>
+      <>
         <div className='my-4'>
           {movie && (
             <MovieView movie={movie} movieCredits={movieCredits?.cast} />
           )}
         </div>
-        <Link
-          href={'/'}
-          className='bg-blue-500 rounded-lg px-4 py-2 text-white font-bold mb-4'
-        >
-          Go Back
-        </Link>
-      </main>
+        <footer className='flex justify-between'>
+          <Link
+            href={'/'}
+            className='bg-blue-500 rounded-lg px-4 py-2 text-white font-bold mb-4 hover:bg-blue-700'
+          >
+            Go Back
+          </Link>
+          <Link
+            href={`/similar-movies?movieId=${id}`}
+            className='bg-green-500 rounded-lg px-4 py-2 text-white font-bold mb-4 hover:bg-green-700'
+          >
+            Look Similar Movies
+          </Link>
+        </footer>
+      </>
     </>
   );
 };

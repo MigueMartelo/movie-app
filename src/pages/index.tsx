@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
 
 import { getMovies } from '@/services';
@@ -7,17 +8,26 @@ import { useMovies } from '@/hooks';
 import { MovieList } from '@/components';
 
 const Home: NextPage = () => {
-  const { data } = useMovies();
+  const { data, isLoading, isError } = useMovies();
+
+  if (isLoading) {
+    return <div className='text-2xl font-bold text-blue-400'>Loading...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className='text-2xl font-bold text-red-400'>
+        Ops! Something Wrong!!!
+      </div>
+    );
+  }
 
   return (
     <>
       <Head>
         <title>Movie Inc</title>
       </Head>
-      <main className='max-w-5xl mx-auto'>
-        <h1 className='text-4xl font-bold text-center'>Movie Inc</h1>
-        <MovieList movies={data || []} />
-      </main>
+      <MovieList movies={data || []} />
     </>
   );
 };

@@ -44,3 +44,11 @@ export const rateMovie = async (
   const data = await response.json();
   return data;
 };
+
+export const getSimilarMovies = async (id: number) => {
+  const response = await fetch(
+    `${BASE_URL}/${id}/similar?api_key=${API_KEY}&page=1`
+  );
+  const data = await response.json();
+  return data.results;
+};
