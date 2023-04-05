@@ -20,10 +20,7 @@ const MoviePage: NextPage = () => {
       <Head>
         <title>Movie Inc</title>
       </Head>
-      <main className='max-w-5xl mx-auto'>
-        <Link href='/'>
-          <h1 className='text-4xl font-bold text-center'>Movie Inc</h1>
-        </Link>
+      <>
         <div className='my-4'>
           {movie && (
             <MovieView movie={movie} movieCredits={movieCredits?.cast} />
@@ -43,7 +40,7 @@ const MoviePage: NextPage = () => {
             Look Similar Movies
           </Link>
         </footer>
-      </main>
+      </>
     </>
   );
 };

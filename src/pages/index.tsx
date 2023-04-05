@@ -15,12 +15,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Movie Inc</title>
       </Head>
-      <main className='max-w-5xl mx-auto'>
-        <Link href='/'>
-          <h1 className='text-4xl font-bold text-center'>Movie Inc</h1>
-        </Link>
-        <MovieList movies={data || []} />
-      </main>
+      <MovieList movies={data || []} />
     </>
   );
 };
