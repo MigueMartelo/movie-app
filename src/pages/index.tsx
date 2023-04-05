@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { QueryClient, dehydrate } from '@tanstack/react-query';
 
 import { getMovies } from '@/services';
@@ -15,7 +16,9 @@ const Home: NextPage = () => {
         <title>Movie Inc</title>
       </Head>
       <main className='max-w-5xl mx-auto'>
-        <h1 className='text-4xl font-bold text-center'>Movie Inc</h1>
+        <Link href='/'>
+          <h1 className='text-4xl font-bold text-center'>Movie Inc</h1>
+        </Link>
         <MovieList movies={data || []} />
       </main>
     </>

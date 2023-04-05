@@ -21,18 +21,28 @@ const MoviePage: NextPage = () => {
         <title>Movie Inc</title>
       </Head>
       <main className='max-w-5xl mx-auto'>
-        <h1 className='text-3xl font-bold text-center'>Movie Inc</h1>
+        <Link href='/'>
+          <h1 className='text-4xl font-bold text-center'>Movie Inc</h1>
+        </Link>
         <div className='my-4'>
           {movie && (
             <MovieView movie={movie} movieCredits={movieCredits?.cast} />
           )}
         </div>
-        <Link
-          href={'/'}
-          className='bg-blue-500 rounded-lg px-4 py-2 text-white font-bold mb-4'
-        >
-          Go Back
-        </Link>
+        <footer className='flex justify-between'>
+          <Link
+            href={'/'}
+            className='bg-blue-500 rounded-lg px-4 py-2 text-white font-bold mb-4 hover:bg-blue-700'
+          >
+            Go Back
+          </Link>
+          <Link
+            href={`/similar-movies?movieId=${id}`}
+            className='bg-green-500 rounded-lg px-4 py-2 text-white font-bold mb-4 hover:bg-green-700'
+          >
+            Look Similar Movies
+          </Link>
+        </footer>
       </main>
     </>
   );
