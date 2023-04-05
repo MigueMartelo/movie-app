@@ -1,5 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { getMovie, getMovieCredits, getMovies, rateMovie } from '@/services';
+import {
+  getMovie,
+  getMovieCredits,
+  getMovies,
+  getSimilarMovies,
+  rateMovie,
+} from '@/services';
 
 export const useMovies = () => useQuery(['movies'], () => getMovies());
 
@@ -21,3 +27,6 @@ export const useRateMovie = () =>
       guestSessionId: string;
     }) => rateMovie(movieId, rating, guestSessionId)
   );
+
+export const useSimilarMovies = (id: number) =>
+  useQuery(['similar-movies', id], () => getSimilarMovies(id));
