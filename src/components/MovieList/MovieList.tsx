@@ -24,9 +24,9 @@ export const MovieList = ({ movies }: MovieListProps) => (
     )}
     {movies.map((movie) => (
       <article key={movie.id} className='w-80 mb-2'>
-        <header className='flex justify-center align-center text-lg font-bold'>
-          <h2>{movie.title} - </h2>
-          <span>- {movie.release_date}</span>
+        <header className='flex flex-col justify-center items-center'>
+          <h2 className='text-lg font-bold'>{movie.title}</h2>
+          <span className='text-sm'>{movie.release_date}</span>
         </header>
         <figure className='h64 w-80 relative'>
           <Link href={`/movie/${movie.id}`}>
