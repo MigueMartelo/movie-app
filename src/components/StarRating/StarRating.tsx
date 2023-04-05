@@ -17,7 +17,7 @@ export const StarRating = ({ movieId }: IStarRatingProps) => {
     setRating(idx);
     rateMovie(
       { movieId, rating: idx, guestSessionId },
-      { onSuccess: () => alert('Your are rated this movie!') }
+      { onSuccess: () => alert('You have rated this movie!!') }
     );
   };
 
