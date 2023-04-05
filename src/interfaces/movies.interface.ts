@@ -36,3 +36,16 @@ export interface ICast {
   credit_id: string;
   order: number;
 }
+
+export interface IMovieViewProps {
+  movie: {
+    id: number;
+    title: string;
+    release_date: string;
+    poster_path: string;
+    overview: string;
+    genres: IGenre[];
+    vote_average: number;
+  };
+  movieCredits: ICast[];
+}

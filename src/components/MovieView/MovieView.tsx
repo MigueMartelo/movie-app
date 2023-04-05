@@ -1,22 +1,9 @@
 import Image from 'next/image';
 import config from '@/config';
-import { ICast, IGenre } from '@/interfaces';
+import { ICast, IGenre, IMovieViewProps } from '@/interfaces';
 import { StarRating } from '@/components';
 
 const { IMAGE_URL } = config;
-
-interface IMovieViewProps {
-  movie: {
-    id: number;
-    title: string;
-    release_date: string;
-    poster_path: string;
-    overview: string;
-    genres: IGenre[];
-    vote_average: number;
-  };
-  movieCredits: ICast[];
-}
 
 export const MovieView = ({ movie, movieCredits }: IMovieViewProps) => {
   return (
@@ -41,7 +28,7 @@ export const MovieView = ({ movie, movieCredits }: IMovieViewProps) => {
           </summary>
           <div className='flex'>
             <span className='font-bold'>Genres:</span>
-            {movie.genres.map((gen: IGenre) => (
+            {movie?.genres.map((gen: IGenre) => (
               <span key={gen.name} className='mr-2'>
                 {gen.name}
               </span>
@@ -49,7 +36,7 @@ export const MovieView = ({ movie, movieCredits }: IMovieViewProps) => {
           </div>
           <div>
             <span className='font-bold'>Rating:</span>{' '}
-            <span>{movie.vote_average.toFixed(1)}/10</span>
+            <span>{movie?.vote_average.toFixed(1)}/10</span>
           </div>
           {movieCredits && (
             <div>

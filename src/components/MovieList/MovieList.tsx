@@ -11,7 +11,7 @@ const { IMAGE_URL } = config;
 
 export const MovieList = ({ movies }: MovieListProps) => (
   <section className='flex flex-wrap gap-4 justify-center items-center mt-6'>
-    {movies.length === 0 && (
+    {movies.length && (
       <>
         <h2 className='text-2xl text-center font-bold'>No Movies Found</h2>
         <Link

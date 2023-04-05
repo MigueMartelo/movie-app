@@ -21,6 +21,9 @@ export const StarRating = ({ movieId }: IStarRatingProps) => {
     );
   };
 
+  const isYellowOrGray = (index: number) =>
+    index + 1 <= (hover || rating) ? 'text-yellow-500' : 'text-gray-600';
+
   return (
     <section className='star-rating'>
       <span className='font-bold'>Vote: </span>
@@ -33,15 +36,7 @@ export const StarRating = ({ movieId }: IStarRatingProps) => {
             onMouseEnter={() => setHover(index + 1)}
             onMouseLeave={() => setHover(rating)}
           >
-            <span
-              className={
-                index + 1 <= (hover || rating)
-                  ? 'text-yellow-500'
-                  : 'text-gray-600'
-              }
-            >
-              &#9733;
-            </span>
+            <span className={isYellowOrGray(index)}>&#9733;</span>
           </button>
         );
       })}
