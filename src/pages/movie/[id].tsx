@@ -12,8 +12,20 @@ const MoviePage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data: movie } = useMovie(Number(id));
+  const { data: movie, isLoading, isError } = useMovie(Number(id));
   const { data: movieCredits } = useMovieCredits(Number(id));
+
+  if (isLoading) {
+    return <div className='text-2xl font-bold text-blue-400'>Loading...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className='text-2xl font-bold text-red-400'>
+        Ops! Something Wrong!!!
+      </div>
+    );
+  }
 
   return (
     <>

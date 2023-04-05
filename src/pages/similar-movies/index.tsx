@@ -9,7 +9,19 @@ import { MovieList } from '@/components';
 const SimilarMoviesPage: NextPage = () => {
   const router = useRouter();
   const { movieId } = router.query;
-  const { data } = useSimilarMovies(Number(movieId));
+  const { data, isLoading, isError } = useSimilarMovies(Number(movieId));
+
+  if (isLoading) {
+    return <div className='text-2xl font-bold text-blue-400'>Loading...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className='text-2xl font-bold text-red-400'>
+        Ops! Something Wrong!!!
+      </div>
+    );
+  }
 
   return (
     <>

@@ -8,7 +8,19 @@ import { useMovies } from '@/hooks';
 import { MovieList } from '@/components';
 
 const Home: NextPage = () => {
-  const { data } = useMovies();
+  const { data, isLoading, isError } = useMovies();
+
+  if (isLoading) {
+    return <div className='text-2xl font-bold text-blue-400'>Loading...</div>;
+  }
+
+  if (isError) {
+    return (
+      <div className='text-2xl font-bold text-red-400'>
+        Ops! Something Wrong!!!
+      </div>
+    );
+  }
 
   return (
     <>
