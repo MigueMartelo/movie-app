@@ -1,5 +1,5 @@
-import { useGuestSession, useRateMovie } from '@/hooks';
 import { useState } from 'react';
+import { useGuestSession, useRateMovie } from '@/hooks';
 
 interface IStarRatingProps {
   movieId: number;
@@ -17,7 +17,7 @@ export const StarRating = ({ movieId }: IStarRatingProps) => {
     setRating(idx);
     rateMovie(
       { movieId, rating: idx, guestSessionId },
-      { onSuccess: () => alert('Your are rated this movie!') }
+      { onSuccess: () => alert('You have rated this movie!!') }
     );
   };
 
@@ -25,18 +25,19 @@ export const StarRating = ({ movieId }: IStarRatingProps) => {
     <section className='star-rating'>
       <span className='font-bold'>Vote: </span>
       {[...Array(10)].map((star, index) => {
-        index += 1;
         return (
           <button
             type='button'
             key={index}
-            onClick={() => handleClick(index)}
-            onMouseEnter={() => setHover(index)}
+            onClick={() => handleClick(index + 1)}
+            onMouseEnter={() => setHover(index + 1)}
             onMouseLeave={() => setHover(rating)}
           >
             <span
               className={
-                index <= (hover || rating) ? 'text-yellow-500' : 'text-gray-600'
+                index + 1 <= (hover || rating)
+                  ? 'text-yellow-500'
+                  : 'text-gray-600'
               }
             >
               &#9733;
