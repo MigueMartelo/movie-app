@@ -11,6 +11,17 @@ const { IMAGE_URL } = config;
 
 export const MovieList = ({ movies }: MovieListProps) => (
   <section className='flex flex-wrap gap-4 justify-center items-center mt-6'>
+    {movies.length === 0 && (
+      <>
+        <h2 className='text-2xl text-center font-bold'>No Movies Found</h2>
+        <Link
+          href={'/'}
+          className='bg-blue-500 rounded-lg px-4 py-2 text-white font-bold mb-4 hover:bg-blue-700'
+        >
+          Go Back
+        </Link>
+      </>
+    )}
     {movies.map((movie) => (
       <article key={movie.id} className='w-80 mb-2'>
         <header className='flex justify-center align-center text-lg font-bold'>
