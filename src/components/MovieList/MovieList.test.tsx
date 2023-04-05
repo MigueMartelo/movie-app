@@ -122,4 +122,10 @@ describe('<MovieList />', () => {
     const movieLink = screen.getAllByRole('link', { name: /read more.../i });
     expect(movieLink.length).toEqual(moviesMock.length);
   });
+
+  test('should render not found message when the movies is empty', () => {
+    render(<MovieList movies={[]} />);
+    const notFoundMessage = screen.getByText(/no movies found/i);
+    expect(notFoundMessage).toBeInTheDocument();
+  });
 });
